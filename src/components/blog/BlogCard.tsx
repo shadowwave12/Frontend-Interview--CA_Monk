@@ -12,8 +12,8 @@ export function BlogCard({ blog, onSelect, isActive }: BlogCardProps) {
   return (
     <Card
       onClick={() => onSelect(blog.id)}
-      className={`cursor-pointer transition hover:shadow-md ${
-        isActive ? "border-primary" : ""
+      className={`cursor-pointer border transition ${
+        isActive ? "bg-gray-100 border-primary" : "hover:bg-gray-50"
       }`}
     >
       <CardContent className="p-4 space-y-2">
@@ -25,7 +25,7 @@ export function BlogCard({ blog, onSelect, isActive }: BlogCardProps) {
           ))}
         </div>
 
-        <h3 className="font-semibold text-lg leading-tight">{blog.title}</h3>
+        <h3 className="font-medium text-base">{blog.title}</h3>
 
         <p className="text-sm text-muted-foreground line-clamp-2">
           {blog.description}

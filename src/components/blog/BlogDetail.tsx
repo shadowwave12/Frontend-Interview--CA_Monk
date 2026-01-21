@@ -13,7 +13,7 @@ export function BlogDetail({ blogId }: BlogDetailProps) {
   if (!blogId) {
     return (
       <div className="h-full flex items-center justify-center text-muted-foreground">
-        Select a blog to view details
+        Select a blog from the list to read full content
       </div>
     );
   }
@@ -34,17 +34,19 @@ export function BlogDetail({ blogId }: BlogDetailProps) {
   // Error state
   if (isError || !data) {
     return (
-      <div className="text-red-500 text-sm">Failed to load blog details.</div>
+      <div className="text-sm text-red-500 bg-red-50 p-4 rounded">
+        Something went wrong while loading this blog.
+      </div>
     );
   }
 
   return (
-    <article className="space-y-6">
+    <article className="bg-white border rounded-xl p-6 md:p-8 max-w-3xl mx-auto space-y-6">
       {/* Cover Image */}
       <img
         src={data.coverImage}
         alt={data.title}
-        className="w-full h-64 object-cover rounded-lg"
+        className="w-full h-48 md:h-64 object-cover rounded-lg"
       />
 
       {/* Categories */}
@@ -57,7 +59,14 @@ export function BlogDetail({ blogId }: BlogDetailProps) {
       </div>
 
       {/* Title */}
-      <h1 className="text-2xl font-bold leading-tight">{data.title}</h1>
+      <h1 className="text-3xl font-bold tracking-tight leading-snug">
+        {data.title}
+      </h1>
+
+      <div className="flex gap-6 text-sm text-muted-foreground">
+        <span className="uppercase">{data.category.join(" • ")}</span>
+        <span>{new Date(data.date).toDateString()}</span>
+      </div>
 
       {/* Date */}
       <p className="text-sm text-muted-foreground">
@@ -65,7 +74,7 @@ export function BlogDetail({ blogId }: BlogDetailProps) {
       </p>
 
       {/* Content */}
-      <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+      <p className="text-gray-700 leading-7 whitespace-pre-line">
         {data.content}
       </p>
     </article>

@@ -16,8 +16,8 @@ export function BlogList({ selectedBlogId, onSelectBlog }: BlogListProps) {
 
   if (isError) {
     return (
-      <div className="text-red-500 text-sm">
-        Failed to load blogs. Please try again.
+      <div className="text-sm text-red-500 bg-red-50 p-3 rounded">
+        Unable to load blogs. Please refresh the page.
       </div>
     );
   }
